@@ -1,6 +1,6 @@
 {
     "watch" : ["."],
-    "ext": ".ts,.js",
+    "ext": ".ts,.js,.html",
     "ignore": [],
     "exec" : "npx ts-node --esm --experimental-specifier-resolution=node route.ts"
 }

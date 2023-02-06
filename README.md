@@ -16,8 +16,11 @@ a chat room service using node and websockets
 - npm install rimraf --save-dev : to remove old build 
 - "build": "rimraf ./build && tsc" : Add build script in package.json
 
-
 ## Issue with importing directory's index.ts directly
 - ES6 modules (type: module in package.json) doesnt allow importing dir directly. Use below work around
 - added --experimental-specifier-resolution=node flag to nodemon, specifically to tsnode
 - added --experimental-specifier-resolution=node flag to start script, specifically to node
+
+## Running the project
+- Dev : npm run start:dev
+- Prod : npm start
