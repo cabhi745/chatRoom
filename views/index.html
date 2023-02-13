@@ -6,11 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A socket example is here</title>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI" crossorigin="anonymous"></script>
+    <script src="./script.js" type ="javascript"></script>
 </head>
 <body>
+    <div class="chatContainer" id = chatContainer>
+    </div>
+    <form>
+        <input type="textbox" class = "message-text-box" id = "messageText" required = "true">
+        <button type="submit" id="sendBtn" class = "sendBtn">Send</button>
+    </form>
+    
     <script>
         const socket = io()
+
+        const sendButton = document.getElementById("sendBtn")
+        const messageText = document.getElementById("messageText")
+        const chatContainer = document.getElementById("chatContainer")
+
+        sendButton.addEventListener('click', sendMessage)
+
+        function sendMessage() {
+            const message = messageText.value
+            chatContainer.innerHTML = chatContainer.innerHTML += message + "<br>"
+            messageText.value = ''
+            console.log(message)
+        }
     </script>
-        
+
 </body>
 </html> 
+
+
