@@ -25,12 +25,20 @@
 
         sendButton.addEventListener('click', sendMessage)
 
+        function addMessageToChat(message) {
+            chatContainer.innerHTML = chatContainer.innerHTML += message + "<br>"
+        }
         function sendMessage() {
             const message = messageText.value
-            chatContainer.innerHTML = chatContainer.innerHTML += message + "<br>"
+            addMessageToChat(message)
             messageText.value = ''
-            console.log(message)
+
+            // send message to the server 
+            socket.emit('sendMessage', {message})
         }
+        
+        // reciever msg from server
+        socket.on('sendMessage', (data) => addMessageToChat(data.message))
     </script>
 
 </body>

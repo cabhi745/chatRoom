@@ -1,13 +1,7 @@
 import express from 'express'
 import http from 'http'
-import path from 'path'
 import {Server} from 'socket.io'
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import * as controller from './controller'
 
 const PORT = 3000
 
@@ -16,14 +10,10 @@ const httpServer = http.createServer(app)
 const io = new Server(httpServer)
 
 // express routes
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'index.html'))
-} )
+app.get('/', controller.chatScreen) 
 
 // socket events 
-io.on('connection', (socket) => {
-    console.log(socket.id)
-})
+io.on('connection', controller.onConnection)
 
 httpServer.listen(PORT, () => console.log(`Listening on port ${PORT}`))
 
