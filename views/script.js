@@ -1,14 +1,22 @@
-// const socket = io()
-console.log("SDAWDAWDAWDAWDAWDAWDADWA");
-// const sendButton = document.getElementById("sendBtn");
-// const messageText = document.getElementById("messageText");
-// const chatContainer = document.getElementById("chatContainer");
+const socket = io()
 
-// sendButton.addEventListener('click', sendMessage);
+const sendButton = document.getElementById("sendBtn")
+const messageText = document.getElementById("messageText")
+const chatContainer = document.getElementById("chatContainer")
 
-// function sendMessage() {
-//     console.log("saddawddawdad");
-//     const message = messageText.value;
-//     chatContainer.innerHTML = chatContainer.innerHTML += message + "<br>";
-//     messageText.value = '';
-// }
+sendButton.addEventListener('click', sendMessage)
+
+function addMessageToChat(message) {
+    chatContainer.innerHTML = chatContainer.innerHTML += message + "<br>"
+}
+function sendMessage() {
+    const message = messageText.value
+    addMessageToChat(message)
+    messageText.value = ''
+
+    // send message to the server 
+    socket.emit('sendMessage', {message})
+}
+
+// reciever msg from server
+socket.on('sendMessage', (data) => addMessageToChat(data.message))
