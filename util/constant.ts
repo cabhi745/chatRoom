@@ -9,3 +9,13 @@ export const socketEvents = {
     connect : 'connect',
     sendMessage : 'sendMessage'
 }
+
+export const pathParams = {
+    roomId : 'roomId'
+}
+
+export const paths = {
+    CHAT_SCREEN : `/room/:${pathParams.roomId}/chat`,
+    CREATE_ROOM : `/room/create`,
+    INDEX_SCREEN : `/`
+}

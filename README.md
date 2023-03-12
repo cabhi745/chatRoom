@@ -24,3 +24,10 @@ a chat room service using node and websockets
 ## Running the project
 - Dev : npm run start:dev
 - Prod : npm start
+
+## todo
+- create UI for rooms
+- create backend support for rooms
+- Add auth from google
+- support for auth from google
+- add logging middleware https://stackoverflow.com/questions/19835652/whats-the-best-practice-for-expressjs-logging
