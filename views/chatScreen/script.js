@@ -3,6 +3,10 @@ const BOT_NAME = "Jenna";
 const PERSON_NAME = "Abhi";
 const BOT_IMG = "https://picsum.photos/500/500";
 const PERSON_IMG = "https://picsum.photos/500/500";
+const roomId = getRoomId()
+
+// emit event to send roomId
+socket.emit('connect-room', {roomId})
 
 const msgerForm = get(".msger-inputarea")
 const msgerInput = get(".msger-input")
@@ -37,14 +41,22 @@ function sendMessage(event) {
     addMessageToChat(PERSON_NAME, PERSON_IMG, 'right',  message)
     msgerInput.value = ''
     // send message to the server 
+    // get roomId from a templating engine later on
     socket.emit('sendMessage', {message})
 }
 
 // reciever msg from server
 socket.on('sendMessage', (data) => addMessageToChat(BOT_NAME, BOT_IMG, 'left',  data.message))
-    
+
 
 // Utils
+
+function getRoomId() {
+  const urlList = window.location.href.split('/')
+  const indexOfRoomId = urlList.indexOf('room') + 1
+  return urlList[indexOfRoomId]
+}
+
 function get(selector, root = document) {
     return root.querySelector(selector);
 }

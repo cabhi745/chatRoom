@@ -17,6 +17,9 @@ app.use(paths.INDEX_SCREEN, express.static(path.join(rootDirName, 'views', 'inde
 
 app.use(paths.CHAT_SCREEN, express.static(path.join(rootDirName, 'views', 'chatScreen')))
 
+app.get(paths.CREATE_ROOM, controller.createRoom)
+
+
 // socket events 
 io.on('connection', controller.onConnection)
 

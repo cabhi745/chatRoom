@@ -1,4 +1,5 @@
 import path, { dirname } from 'path';
+import { disconnect } from 'process';
 import { fileURLToPath } from 'url';
 
 // constants
@@ -7,7 +8,9 @@ export const rootDirName = path.join(dirname(__filename), '..');
 
 export const socketEvents = {
     connect : 'connect',
-    sendMessage : 'sendMessage'
+    sendMessage : 'sendMessage',
+    disconnect: 'disconnect',
+    connectRoom: 'connect-room'
 }
 
 export const pathParams = {
