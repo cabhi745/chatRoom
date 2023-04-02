@@ -25,4 +25,4 @@ io.on('connection', controller.onConnection)
 
 httpServer.listen(PORT, () => console.log(`Listening on port ${PORT}`))
 
-
+export {io}

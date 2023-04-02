@@ -5,8 +5,9 @@ const BOT_IMG = "https://picsum.photos/500/500";
 const PERSON_IMG = "https://picsum.photos/500/500";
 const roomId = getRoomId()
 
+
 // emit event to send roomId
-socket.emit('connect-room', {roomId})
+socket.emit('connect-room', {roomId, create: isCreateRoom()})
 
 const msgerForm = get(".msger-inputarea")
 const msgerInput = get(".msger-input")
@@ -50,6 +51,18 @@ socket.on('sendMessage', (data) => addMessageToChat(BOT_NAME, BOT_IMG, 'left',  
 
 
 // Utils
+function isCreateRoom() {
+  const params = getParams()
+  return params?.create === 'true' ? true : false
+}
+
+// ref : https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+function getParams() {
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  })
+  return params
+}
 
 function getRoomId() {
   const urlList = window.location.href.split('/')

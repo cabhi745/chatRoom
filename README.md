@@ -27,7 +27,8 @@ a chat room service using node and websockets
 
 ## todo
 - create backend support for rooms -  done
-- create UI for rooms - done skeleton
+    - connect socket on index and check if room exists
+- create UI for rooms - done
 - Add auth from google
 - support for auth from google
 - add logging middleware https://stackoverflow.com/questions/19835652/whats-the-best-practice-for-expressjs-logging
