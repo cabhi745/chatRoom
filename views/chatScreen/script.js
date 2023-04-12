@@ -49,11 +49,17 @@ function sendMessage(event) {
 // reciever msg from server
 socket.on('sendMessage', (data) => addMessageToChat(BOT_NAME, BOT_IMG, 'left',  data.message))
 
+// listen to room not exist 
+socket.on('room-does-not-exist', () => redirect('/'))
 
 // Utils
 function isCreateRoom() {
   const params = getParams()
   return params?.create === 'true' ? true : false
+}
+
+function redirect(path){
+  location.href = path
 }
 
 // ref : https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript

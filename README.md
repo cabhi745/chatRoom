@@ -27,7 +27,8 @@ a chat room service using node and websockets
 
 ## todo
 - create backend support for rooms -  done
-    - connect socket on index and check if room exists
+    - connect socket on index and check if room exists - done
+    - enhancement: connect socket on index and check if room exist on the same page. based on that redirect to chat screen or show error on same page
 - create UI for rooms - done
 - Add auth from google
 - support for auth from google

@@ -10,7 +10,8 @@ export const socketEvents = {
     connect : 'connect',
     sendMessage : 'sendMessage',
     disconnect: 'disconnect',
-    connectRoom: 'connect-room'
+    connectRoom: 'connect-room',
+    roomDoesNotExist: 'room-does-not-exist'
 }
 
 export const pathParams = {
