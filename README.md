@@ -28,8 +28,12 @@ a chat room service using node and websockets
 ## todo
 - create backend support for rooms -  done
     - connect socket on index and check if room exists - done
-    - enhancement: connect socket on index and check if room exist on the same page. based on that redirect to chat screen or show error on same page
-- create UI for rooms - done
-- Add auth from google
+    - enhancement: connect socket on index and check if room exist on the same page. based on that redirect to chat screen or show error on same page - P3
+- create rooms UI for rooms - done
+- Add auth from google - done
 - support for auth from google
-- add logging middleware https://stackoverflow.com/questions/19835652/whats-the-best-practice-for-expressjs-logging
+    - UI for sign in - P1
+    - add qparams for success and failure in auth and display acc on index - P2
+- Using signed in user name and image for chats - P1
+- auth logout handling - P2
+- add logging middleware https://stackoverflow.com/questions/19835652/whats-the-best-practice-for-expressjs-logging - P3
