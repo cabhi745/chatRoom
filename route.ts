@@ -5,11 +5,13 @@ import {Server} from 'socket.io'
 import 'dotenv/config'
 import passport from 'passport'
 import { Strategy } from 'passport-google-oauth20'
+import { engine } from 'express-handlebars'
+
 
 // module imports
 import * as controller from './controller'
 import * as middleware from './util/middleware'
-import { optionsForAuth, optionsForCallback, optionsForSession, paths, rootDirName, strategyObject,  } from './util/constant'
+import { optionsForAuth, optionsForCallback, optionsForSession, paths, rootDirName, strategyObject } from './util/constant'
 import { verifyCallback } from './util/middleware'
 import cookieSession from 'cookie-session'
 
@@ -19,8 +21,13 @@ const app = express()
 const httpServer = http.createServer(app)
 const io = new Server(httpServer)
 
-// authentication middlewares
+// templating engine
+app.engine('handlebars', engine())
+app.set('view engine', 'handlebars')
+app.set('views', path.join(rootDirName, 'views'))
+app.use(express.static(path.join(rootDirName, 'views', 'static')));
 
+// authentication middlewares
 passport.serializeUser(middleware.serializeMiddleware)
 passport.deserializeUser(middleware.deserializeMiddleware)
 app.use(cookieSession(optionsForSession))
@@ -33,12 +40,12 @@ app.get(paths.AUTH_GOOGLE, passport.authenticate('google', optionsForAuth ))
 app.get(paths.CALLBACK_GOOGLE, passport.authenticate('google', optionsForCallback))
 
 // routes
-app.use(paths.INDEX_SCREEN, express.static(path.join(rootDirName, 'views', 'indexScreen')))
+app.get(paths.INDEX_SCREEN, controller.index)
 
 //check log in for all the below routes
 app.use(middleware.isLoggedIn)
 
-app.use(paths.CHAT_SCREEN, express.static(path.join(rootDirName, 'views', 'chatScreen')))
+app.get(paths.CHAT_SCREEN, controller.chat)
 
 app.get(paths.CREATE_ROOM, controller.createRoom)
 

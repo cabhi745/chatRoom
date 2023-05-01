@@ -1,10 +1,7 @@
 const socket = io()
 const BOT_NAME = "Jenna";
-const PERSON_NAME = "Abhi";
 const BOT_IMG = "https://picsum.photos/500/500";
-const PERSON_IMG = "https://picsum.photos/500/500";
 const roomId = getRoomId()
-
 
 // emit event to send roomId
 socket.emit('connect-room', {roomId, create: isCreateRoom()})
@@ -15,14 +12,14 @@ const msgerChat = get(".msger-chat")
 
 msgerForm.addEventListener('submit', sendMessage)
 
-function addMessageToChat(name, img, side, text) {
+function addMessageToChat(userName, img, side, text) {
     const msgHTML =  `
       <div class="msg ${side}-msg">
         <div class="msg-img" style="background-image: url(${img})"></div>
   
         <div class="msg-bubble">
           <div class="msg-info">
-            <div class="msg-info-name">${name}</div>
+            <div class="msg-info-name">${userName}</div>
             <div class="msg-info-time">${formatDate(new Date())}</div>
           </div>
   
@@ -39,15 +36,15 @@ function sendMessage(event) {
     event.preventDefault()
     const message = msgerInput.value
     if (!message) return;
-    addMessageToChat(PERSON_NAME, PERSON_IMG, 'right',  message)
+    addMessageToChat(userName, userImage, 'right',  message)
     msgerInput.value = ''
     // send message to the server 
     // get roomId from a templating engine later on
-    socket.emit('sendMessage', {message})
+    socket.emit('sendMessage', {message, userName, userImage})
 }
 
 // reciever msg from server
-socket.on('sendMessage', (data) => addMessageToChat(BOT_NAME, BOT_IMG, 'left',  data.message))
+socket.on('sendMessage', (data) => addMessageToChat(data.userName, data.userImage, 'left',  data.message))
 
 // listen to room not exist 
 socket.on('room-does-not-exist', () => redirect('/'))

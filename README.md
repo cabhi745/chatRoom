@@ -34,6 +34,6 @@ a chat room service using node and websockets
 - support for auth from google
     - UI for sign in - P1
     - add qparams for success and failure in auth and display acc on index - P2
-- Using signed in user name and image for chats - P1
+- Using signed in user name and image for chats - P1 - WIP
 - auth logout handling - P2
 - add logging middleware https://stackoverflow.com/questions/19835652/whats-the-best-practice-for-expressjs-logging - P3
