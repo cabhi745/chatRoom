@@ -5,6 +5,9 @@
   <title>Chat Room</title>
   <link rel="stylesheet" type="text/css" href="/index/style.css">
 </head>
+<script>
+  const isLoggedIn = {{ loggedIn }}
+</script>
 
 <body>
   <div class="login-root">
@@ -12,7 +15,8 @@
       <div class="loginbackground box-background--white padding-top--64">
         <div class="loginbackground-gridContainer">
           <div class="box-root flex-flex" style="grid-area: top / start / 8 / end;">
-            <div class="box-root" style="background-image: linear-gradient(white 0%, rgb(247, 250, 252) 33%); flex-grow: 1;">
+            <div class="box-root"
+              style="background-image: linear-gradient(white 0%, rgb(247, 250, 252) 33%); flex-grow: 1;">
             </div>
           </div>
           <div class="box-root flex-flex" style="grid-area: 4 / 2 / auto / 5;">
@@ -48,23 +52,32 @@
         <div class="formbg-outer">
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
-              <span class="padding-bottom--15">Join or create a room</span>
+              <span class="padding-bottom--15" id = 'join-title'>Join or create a room</span>
+              <span class="padding-bottom--15" id = 'login-title'>Login to continue</span>
               <form id="join-room-form">
                 <div class="field padding-bottom--24">
                   <label for="email">Room Id</label>
-                  <input type="text" class="room-id-input" placeholder="Enter room Id" required="true"> 
+                  <input type="text" class="room-id-input" placeholder="Enter room Id" required="true">
                 </div>
                 <div class="field padding-bottom--24">
-                  <input type="submit" class="join-room-btn" name="submit" value = "Join">
+                  <input type="submit" class="join-room-btn" name="submit" value="Join">
                 </div>
                 <div class="field padding-bottom--24">
-                    <button type="button" class="create-room-btn">Create new room</button>
+                  <button type="button" class="create-room-btn">Create new room</button>
                 </div>
               </form>
+               <a href="/auth/google">
+              <div class="google-btn padding-bottom--24">
+                <div class="google-icon-wrapper">
+                  <img class="google-icon"
+                    src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
+                </div>
+                <p class="btn-text"><b>  Sign in with google</b></p>
+              </div>
+              </a>
             </div>
           </div>
           <div class="footer-link padding-top--24">
-            <span>Don't have an account? <a href="/auth/google">Sign up</a></span>
             <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
               <span><a href="#">Contact</a></span>
               <span><a href="#">Privacy & terms</a></span>

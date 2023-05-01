@@ -43,7 +43,7 @@ app.get(paths.CALLBACK_GOOGLE, passport.authenticate('google', optionsForCallbac
 app.get(paths.INDEX_SCREEN, controller.index)
 
 //check log in for all the below routes
-app.use(middleware.isLoggedIn)
+app.use(middleware.checkLoggedIn)
 
 app.get(paths.CHAT_SCREEN, controller.chat)
 

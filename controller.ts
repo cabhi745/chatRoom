@@ -8,6 +8,7 @@ import _ from "lodash"
 // file imports 
 import * as constant from './util/constant'
 import { io } from "./route"
+import { isUserLoggedIn } from "./util/util"
 
 // constants
 const socketEvents = constant.socketEvents
@@ -17,6 +18,7 @@ const socketEvents = constant.socketEvents
 export const index = (req: Request, res: Response ) => {
     const data = {
         layout: false, // for handlebars to disable layouts
+        loggedIn: isUserLoggedIn(req)
     }
     return res.render(path.join('indexScreen', 'index'), data)
 }

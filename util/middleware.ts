@@ -1,5 +1,7 @@
+import _ from "lodash";
 import { NextFunction, Request, Response } from "express";
 import { paths } from "./constant";
+import { isUserLoggedIn } from "./util";
 
 // callback function thats executed after auth
 // usually just done is used in OAUTH
@@ -7,8 +9,8 @@ export function verifyCallback (accessToken: string, refreshToken: string, profi
     done(null, profile)
 }
 
-export function isLoggedIn (req: Request, res: Response, next: NextFunction) {
-    const isLoggedIn  = req.isAuthenticated() && req.user
+export function checkLoggedIn (req: Request, res: Response, next: NextFunction) {
+    const isLoggedIn  = isUserLoggedIn(req)
     console.log(`Is the user authenticated : ${req.isAuthenticated()}`)
     // console.log(req.user)
     if(!isLoggedIn) {
