@@ -9,7 +9,8 @@ export function verifyCallback (accessToken: string, refreshToken: string, profi
 
 export function isLoggedIn (req: Request, res: Response, next: NextFunction) {
     const isLoggedIn  = req.isAuthenticated() && req.user
-    console.log(req.isAuthenticated(), req.user)
+    console.log(`Is the user authenticated : ${req.isAuthenticated()}`)
+    // console.log(req.user)
     if(!isLoggedIn) {
         return res.redirect(paths.AUTH_GOOGLE)
     }
@@ -20,11 +21,13 @@ export function isLoggedIn (req: Request, res: Response, next: NextFunction) {
 // return value in done is just user id as we just need that to verify if user is logged in or not. 
 export function serializeMiddleware (user: any, done: (err: any, id?: unknown) => void) {
     console.log(`User logged in with UserId: ${user.id}`)
-    done(null, user.id)
+    // saving entire user data to cookies
+    done(null, user)
 }
 
 // deserialize is used to allow passport to get data from cookies.
 // any validation for server side sessions can be done here ===
 export function deserializeMiddleware (user: any, done: (err: any, id?: unknown) => void) {
+    // saving entire user data to cookies
     done(null, user)
 }
